@@ -7,7 +7,7 @@
 
 Для работы скрипта нужна установка некоторых библиотек:
 
-<code>pip install bitcoin mnemonic requests python-telegram-bot==13.15</code>
+<code>pip install bitcoin mnemonic requests python-telegram-bot==13.1</code>
 
 Количество итераций можно установить в 7-й строке (по умолчанию установлено 1000000)
 Время между проверками установлено в 41-й строке (по умолчанию 5 сек). Меньше ставить не рекомендую, т.к. IP улетает в бан на сайте.
