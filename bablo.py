@@ -4,6 +4,16 @@ import requests
 import time
 from telegram.bot import Bot
 
+# Add proxy support
+proxies = {}
+with open("proxy.txt") as f:
+    proxy = f.readline().strip()
+    if proxy:
+        proxies = {
+            "http": proxy,
+            "https": proxy,
+        }
+
 bot = Bot(token="YOUR_TOKEN")
 chat_id = your_chat_id
 
